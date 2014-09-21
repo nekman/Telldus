@@ -1,0 +1,106 @@
+<html manifest="@@manifest">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!-- Fullscreen for IOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <title>Telldus</title>
+    <link href="//code.ionicframework.com/1.0.0-beta.12/css/ionic.min.css" rel="stylesheet">    
+  </head>
+
+  <body ng-app="tellstick">
+    <ion-nav-bar class="nav-title-slide-ios7 bar-positive">
+      <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
+    </ion-nav-bar>
+             
+    <ion-nav-view animation="slide-left-right"></ion-nav-view>
+
+    <script id="templates/tabs.html" type="text/ng-template">
+      <ion-tabs class="tabs-icon-top tabs-positive">
+
+        <ion-tab title="Sync" icon="ion-loop" ng-click="sync()">
+        </ion-tab>
+
+        <ion-tab title="Devices" icon="ion-home" href="#/tab/devices">
+          <ion-nav-view name="devices-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Configuration" icon="ion-ios7-settings" href="#/tab/config">
+          <ion-nav-view name="config-tab"></ion-nav-view>
+        </ion-tab>
+
+      </ion-tabs>
+    </script>
+
+    <script id="templates/config.html" type="text/ng-template">
+      <ion-view title="Configuration">
+        <ion-content class="padding"> 
+
+          <div class="list">
+            <div class="item item-divider"> 
+              Telldus OAuth settings
+            </div>
+          
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Public key</span>
+              <input type="text" ng-model="publicKey" ng-change="changepublicKey(publicKey)" placeholder="{{publicKey}}">
+            </label>
+            
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Private key</span>
+              <input type="text" ng-model="privateKey" ng-change="changeprivateKey(privateKey)" placeholder="{{privateKey}}">
+            </label>
+            
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Access token</span>
+              <input type="text" ng-model="accessToken" ng-change="changeaccessToken(accessToken)" placeholder="{{accessToken}}">
+            </label>
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Access token secret</span>
+            <input type="text" ng-model="accessTokenSecret" ng-change="changeaccessTokenSecret(accessTokenSecret)" placeholder="{{accessTokenSecret}}">
+          </label>
+        </div>
+
+        </ion-content>
+      </icon-view>
+    </script>
+
+    <script id="templates/devices.html" type="text/ng-template">
+      <ion-view title="{{ title }}">
+          <ion-content class="padding"> 
+             <div class="list">
+
+               <div class="item item-divider"> 
+                Devices
+               </div>
+
+               <ion-toggle ng-repeat="device in devices"
+                           ng-model="device.state" 
+                           ng-change="toggleDevice(device)" 
+                           ng-checked="device.state == 1">
+                 {{ device.name }}
+               </ion-toggle>
+
+               <div class="item item-divider" ng-show="devices.length"> 
+                  All devices
+               </div>
+
+               <div class="item" ng-show="devices.length">
+                  <button ng-click="turnOffAllDevices()" 
+                      class="button button-outline button-assertive">
+                      Turn off all
+                  </button>
+               </div>
+             </div>
+          </ion-content>
+        </ion-view>
+    </script>
+
+    <script src="static/app.@@hash.js"></script>
+    <script>
+      require('App');
+    </script>
+  </body>
+</html>
