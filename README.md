@@ -6,7 +6,7 @@ Single page ES6/HTML5 mobile app for communicating with Telldus API (api.telldus
 
 <ul>
 <li><a href="https://github.com/google/traceur-compiler">Traceur compiler</a> for compiling ES6/7 source to ES5</li>
-<li><a href="http://ionicframework.com/">Ionic framewor</a>k (with AngularJS)</li>
+<li><a href="http://ionicframework.com/">Ionic framework</a> (with AngularJS)</li>
 <li><a href="http://browserify.org/">Browserify</a></li>
 </ul>
 
